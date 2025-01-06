@@ -1,1 +1,1 @@
-# design-system
+# sooho-design-system
