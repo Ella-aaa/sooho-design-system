@@ -15,9 +15,23 @@ const config = {
     name: "@storybook/nextjs",
     options: {},
   },
+  /** "typescript" 세팅 ( 공식문서에서 제공하는 세팅 ) */
   typescript: {
-    //스토리북에서 컴포넌트 props type에 문자열 리터럴 유니온 타입을 좀더 구체적으로 표시하기 위해 설정
+    /** "fork-ts-checker-webpack-plugin" 사용 여부 ( 별도의 타입 검사 플러그인 ) */
+    check: false,
+
+    /** "check" 활성화 시 "fork-ts-checker-webpack-plugin" 옵션 설정 */
+    checkOptions: {},
+
+    /** "react-docgen-typescript-plugin" 추가 ( 컴포넌트에서 사용한 타입을 추출해 문서로 만들어주는 도구 ) */
     reactDocgen: "react-docgen-typescript",
+
+    /** "react-docgen-typescript"가 활성화된 경우 옵션 설정 */
+    reactDocgenTypescriptOptions: {
+      shouldExtractLiteralValuesFromEnum: true,
+      propFilter: (prop) =>
+        prop.parent ? !/node_modules/.test(prop.parent.fileName) : true,
+    },
   },
 };
 export default config;
